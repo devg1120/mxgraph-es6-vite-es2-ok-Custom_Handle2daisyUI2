@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="splitpanel.default.css" />
     <script type="text/javascript" src="splitpanel.js"></script>
 
-
     <style>
       :root {
         --my-color: #fff;
@@ -41,7 +40,7 @@
 
       .main-content {
         /*max-height: calc(100vh - 97px);*/
-        max-height: 90vh ;
+        max-height: 90vh;
         /*max-height: 100vh ;*/
         z-index: 40;
         margin: 0;
@@ -58,12 +57,11 @@
         white-space: pre !important;
       }
       #iframe-base {
-          height: 350px;
-
+        height: 350px;
       }
       #terminal {
         font-family: "courier new", Futura, Helvetica, "游ゴシック", "メイリオ", Osaka;
-        border: none; 
+        border: none;
         /*color: white;*/
         font-size: 10pt;
       }
@@ -85,9 +83,9 @@
       }
 
       .code-body {
-         /*height: calc(100vh - 511px);  */
-         /*height: calc(100vh - 535px );  */
-	 /*      
+        /*height: calc(100vh - 511px);  */
+        /*height: calc(100vh - 535px );  */
+        /*      
                          navbar2    40px
                          desc       24px
 			 iframe    350px
@@ -97,10 +95,10 @@
 			 ---------------
 			           535px
 	  */
-         /*height: calc(90vh - 438px);  */
-         height: calc(90vh - 420px);  
+        /*height: calc(90vh - 438px);  */
+        height: calc(90vh - 420px);
 
-	 /*      
+        /*      
                          navbar2    40px
                          desc       24px
 			 iframe    350px
@@ -109,25 +107,26 @@
 			 ---------------
 			           438px
 	  */
-         max-width:70vw;
-
+        max-width: 70vw;
       }
 
-.gutter {
-    background-color: #eee;
-    background-repeat: no-repeat;
-    background-position: 50%;
-}
+      .gutter {
+        background-color: #eee;
+        background-repeat: no-repeat;
+        background-position: 50%;
+      }
 
-.gutter.gutter-vertical {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
-    cursor: row-resize;
-}
+      .gutter.gutter-vertical {
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
+        cursor: row-resize;
+      }
+
+
     </style>
   </head>
 
   <body>
-    <div >
+    <div>
       <div class="navbar bg-base-100 shadow-sm gap-4">
         <div class="flex-none">
           <button class="btn btn-square btn-ghost">
@@ -142,7 +141,7 @@
           <div id="theme-img" class="dark-mode"></div>
         </div>
         <div class="flex-none">
-          <button id="theme-toggle" data-toggle-theme="dark,light" data-act-class="ACTIVECLASS" onclick="theme(this)">dark</button>
+          <button id="theme-toggle" class="btn btn-xs btn-outline " data-toggle-theme="dark,light" data-act-class="ACTIVECLASS" onclick="theme(this)">dark</button>
         </div>
         <div class="flex-none">
           <button class="btn btn-square btn-ghost">
@@ -152,8 +151,8 @@
           </button>
         </div>
       </div>
-      <div class="flex  main-content">
-        <div class="w-64 flex-1  overflow-y-scroll">
+      <div class="flex main-content">
+        <div class="w-64 flex-1 overflow-y-scroll">
           <!--MENU-->
           <div class="position-sticky">
             <!--
@@ -166,7 +165,7 @@
               <li>
                 <button value="examples/editors/diagrameditor.html" onclick="show(this)">mxDraw</button>
               </li>
-	      <hr>
+              <hr />
               <li>
                 <button value="examples/anchors.html" onclick="show(this)">Anchors</button>
               </li>
@@ -410,7 +409,7 @@
             </ul>
           </div>
         </div>
-        <div class="flex-5 ">
+        <div class="flex-5">
           <!--MAIN-->
           <div class="navbar2 bg-base-200">
             <!--
@@ -419,20 +418,20 @@
             <button class="btn btn-ghost text-xl" id="title">daisyUI</button>
           </div>
 
-          <div class="iframe-base bg-base-100 ">
+          <div class="iframe-base bg-base-100">
             <div id="desc"></div>
           </div>
-        <div id="center" class="split">
-            <div id="iframe-base"  class="bg-base-100"  d-split-auto="true"></div>
-             <div id="code" class="code-body overflow-y-scroll ">
-                  <pre ><code  id="codeview" class="language-javascript"> ></code></pre>
-             </div>
-        </div>
+          <div id="center" class="split">
+            <div id="iframe-base" class="bg-base-100" d-split-auto="true"></div>
+            <div id="code" class="code-body overflow-y-scroll">
+              <pre><code  id="codeview" class="language-javascript"> ></code></pre>
+            </div>
+          </div>
         </div>
 
-      <div class="flex-1  overflow-y-scroll">
-        <textarea id="terminal"  rows="20" cols="30" spellcheck="false"></textarea>
-      </div>
+        <div class="flex-1 overflow-y-scroll">
+          <textarea id="terminal" rows="20" cols="30" spellcheck="false"></textarea>
+        </div>
       </div>
       <!-- end flex -->
     </div>
@@ -469,8 +468,6 @@
         const parent = document.getElementById("iframe-base");
         iframe = document.createElement("iframe");
 
-
-
         iframe.src = src;
         //iframe.width = "80%";
         //iframe.height = "350";
@@ -485,7 +482,6 @@
         const key = src.replace("/", "$").replace(".", "_");
         let desc_str = menu_dict[key];
         desc.innerHTML = `<blockquote><font size="2" color="#3399ff">${desc_str}</font></blockquote>`;
-
 
         const code = document.getElementById("codeview");
         const text = `
@@ -537,8 +533,7 @@
           img.classList.add("light-mode");
         }
 
-        SplitPanel.init(document.getElementById("center"),"vertical");
-
+        SplitPanel.init(document.getElementById("center"), "vertical");
       };
 
       async function show(obj) {
@@ -687,7 +682,7 @@
         terminal.value += msg;
         terminal.value += "\n";
       }
-      //window.console.log = captureLog;
+      window.console.log = captureLog;
     </script>
   </body>
 </html>
