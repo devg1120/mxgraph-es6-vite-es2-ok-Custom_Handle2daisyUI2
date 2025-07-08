@@ -40,14 +40,15 @@
       }
 
       .main-content {
-        /*max-height: calc(100vh - 97px);*/
-        max-height: 90vh ;
+        max-height: calc(100vh - 97px);
         /*max-height: 100vh ;*/
         z-index: 40;
         margin: 0;
         padding: 0;
       }
       .navbar2 {
+   /*     position: sticky;*/
+   /*     top: 0px;*/
         z-index: 40;
         margin: 0;
         padding: 0;
@@ -57,10 +58,7 @@
         overflow-wrap: normal !important;
         white-space: pre !important;
       }
-      #iframe-base {
-          height: 350px;
 
-      }
       #terminal {
         font-family: "courier new", Futura, Helvetica, "游ゴシック", "メイリオ", Osaka;
         border: none; 
@@ -86,7 +84,7 @@
 
       .code-body {
          /*height: calc(100vh - 511px);  */
-         /*height: calc(100vh - 535px );  */
+         height: calc(100vh - 535px);  
 	 /*      
                          navbar2    40px
                          desc       24px
@@ -96,18 +94,6 @@
 			 under-gap  97px
 			 ---------------
 			           535px
-	  */
-         /*height: calc(90vh - 438px);  */
-         height: calc(90vh - 420px);  
-
-	 /*      
-                         navbar2    40px
-                         desc       24px
-			 iframe    350px
-			            18px   scroll-bar
-			             6px   split
-			 ---------------
-			           438px
 	  */
          max-width:70vw;
 
@@ -423,7 +409,7 @@
             <div id="desc"></div>
           </div>
         <div id="center" class="split">
-            <div id="iframe-base"  class="bg-base-100"  d-split-auto="true"></div>
+            <div id="iframe"  class="bg-base-100"  d-split-auto="true"></div>
              <div id="code" class="code-body overflow-y-scroll ">
                   <pre ><code  id="codeview" class="language-javascript"> ></code></pre>
              </div>
@@ -466,16 +452,11 @@
       let active = null;
 
       window.onload = function () {
-        const parent = document.getElementById("iframe-base");
+        const parent = document.getElementById("iframe");
         iframe = document.createElement("iframe");
-
-
-
         iframe.src = src;
-        //iframe.width = "80%";
-        //iframe.height = "350";
-        iframe.width = "100%";
-        iframe.height = "100%";
+        iframe.width = "80%";
+        iframe.height = "350";
         parent.appendChild(iframe);
         title_ele = document.getElementById("title");
         //src_ele = document.getElementById("src");
@@ -553,8 +534,7 @@
         title_ele.innerHTML = `<h1>${title_text}</h1>`;
         //src_ele.innerHTML = `<h2>${src}</h2>`;
         const desc = document.getElementById("desc");
-        //const key = src.replace("/", "$").replace(".", "_");
-        const key = src.replace(/\//g, "$").replace(/\./g, "_");
+        const key = src.replace("/", "$").replace(".", "_");
         let desc_str = menu_dict[key];
         desc.innerHTML = `<blockquote><font size="2" color="#3399ff">${desc_str}</font></blockquote>`;
 
@@ -594,8 +574,6 @@
 
     <script>
       let menu_dict = {
-        examples$grapheditor$www$index_html: "- GraphEditor .",
-        examples$editors$diagrameditor_html: "- Diagrameditor.",
         examples$anchors_html: "- Define fixed connection points for all shapes.",
         examples$animation_html: "- Using SVG animation to visualize the flow in a pipe.",
         examples$autolayout_html: "- Running and animating a layout algorithm after every change to a graph.",
@@ -687,7 +665,7 @@
         terminal.value += msg;
         terminal.value += "\n";
       }
-      //window.console.log = captureLog;
+      window.console.log = captureLog;
     </script>
   </body>
 </html>
