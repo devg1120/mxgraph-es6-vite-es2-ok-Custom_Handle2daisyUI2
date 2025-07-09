@@ -70,10 +70,10 @@
         padding: 0;
       }
       .side-menu-show {
-         display: block;
+        display: block;
       }
       .side-menu-hidden {
-         display: none;
+        display: none;
       }
 
       #title-bar {
@@ -136,7 +136,7 @@
         </div>
       </div>
       <div id="main-content" class="flex">
-	      <!--
+        <!--
         <div class="w-64 flex-1 overflow-y-scroll">
 	      -->
         <div id="side-menu" class="w-64 flex-1 overflow-y-scroll side-menu-show">
@@ -412,9 +412,30 @@
             </div>
           </div>
         </div>
-
+        <!--
         <div class="flex-1 overflow-y-scroll">
           <textarea id="terminal" rows="20" cols="30" spellcheck="false"></textarea>
+        </div>
+-->
+        <div class="flex-2">
+          <div class="collapse bg-base-100 border border-base-300">
+            <input type="radio" name="my-accordion-1" checked="checked" />
+            <div class="collapse-title font-medium text-blue-500">console</div>
+
+            <div class="overflow-y-scroll">
+              <textarea id="terminal" rows="20" cols="30" spellcheck="false"></textarea>
+            </div>
+          </div>
+          <div class="collapse bg-base-100 border border-base-300">
+            <input type="radio" name="my-accordion-1" />
+            <div class="collapse-title font-medium text-blue-500">What should</div>
+            <div class="collapse-content text-sm">Click on "Forgot Password" on the login page and follow the instructions sent to your email.</div>
+          </div>
+          <div class="collapse bg-base-100 border border-base-300">
+            <input type="radio" name="my-accordion-1" />
+            <div class="collapse-title font-medium text-blue-500">information</div>
+            <div class="collapse-content text-sm">Go to "My Account" settings and select "Edit Profile" to make changes.</div>
+          </div>
         </div>
       </div>
       <!-- end flex -->
@@ -464,7 +485,6 @@
         const key = src.replace("/", "$").replace(".", "_");
         let desc_str = menu_dict[key];
         desc.innerHTML = `<blockquote><font size="3" color="#3399ff">${desc_str}</font></blockquote>`;
-
 
         let buttons = document.querySelectorAll("button");
         for (const obj of buttons) {
@@ -553,18 +573,17 @@
         }
       }
 
-      function  menuswitch() {
-          //console.log("menuswitch");
-          const side_menu = document.getElementById("side-menu");
-          if(side_menu.classList.contains('side-menu-show')){
-              side_menu.classList.remove("side-menu-show");
-              side_menu.classList.add("side-menu-hidden");
-           } else if(side_menu.classList.contains('side-menu-hidden')){
-              side_menu.classList.remove("side-menu-hidden");
-              side_menu.classList.add("side-menu-show");
-	   }
+      function menuswitch() {
+        //console.log("menuswitch");
+        const side_menu = document.getElementById("side-menu");
+        if (side_menu.classList.contains("side-menu-show")) {
+          side_menu.classList.remove("side-menu-show");
+          side_menu.classList.add("side-menu-hidden");
+        } else if (side_menu.classList.contains("side-menu-hidden")) {
+          side_menu.classList.remove("side-menu-hidden");
+          side_menu.classList.add("side-menu-show");
+        }
       }
-
     </script>
 
     <script>
@@ -662,7 +681,7 @@
         terminal.value += msg;
         terminal.value += "\n";
       }
-      //window.console.log = captureLog;
+      window.console.log = captureLog;
     </script>
   </body>
 </html>
