@@ -121,6 +121,21 @@
         <div class="flex-1">
           <a class="btn btn-ghost text-xl">mxGraph gsDrow</a>
         </div>
+
+        <div class="flex-none">
+          <button class="btn btn-square btn-ghost" onclick="pannelswitch()">
+		  <!--
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-5 w-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+		  -->
+		  <!--
+			  https://atlasicons.vectopus.com/
+		  -->
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="inline-block h-5 w-5 stroke-current" stroke-width="1.5" width="24" height="24" ><defs><style>.cls-63ce7424ea57ea6c8380053d-1{fill:none;stroke:currentColor;stroke-miterlimit:10;}</style></defs><line class="cls-63ce7424ea57ea6c8380053d-1" x1="0.5" y1="12" x2="9.13" y2="12"></line><line class="cls-63ce7424ea57ea6c8380053d-1" x1="14.88" y1="12" x2="23.5" y2="12"></line><polyline class="cls-63ce7424ea57ea6c8380053d-1" points="18.71 8.17 14.88 12 18.71 15.83"></polyline><polyline class="cls-63ce7424ea57ea6c8380053d-1" points="5.29 15.83 9.13 12 5.29 8.17"></polyline><line class="cls-63ce7424ea57ea6c8380053d-1" x1="12" y1="2.42" x2="12" y2="21.58"></line></svg>
+
+          </button>
+        </div>
+
+
         <div class="flex-none">
           <div id="theme-img" class="dark-mode"></div>
         </div>
@@ -417,7 +432,7 @@
           <textarea id="terminal" rows="20" cols="30" spellcheck="false"></textarea>
         </div>
 -->
-        <div class="flex-2">
+        <div id="right-pannel" class="flex-2">
           <div class="collapse bg-base-100 border border-base-300">
             <input type="radio" name="my-accordion-1" checked="checked" />
             <div class="collapse-title font-medium text-blue-500">console</div>
@@ -582,6 +597,19 @@
         } else if (side_menu.classList.contains("side-menu-hidden")) {
           side_menu.classList.remove("side-menu-hidden");
           side_menu.classList.add("side-menu-show");
+        }
+      }
+      function pannelswitch() {
+        console.log("pannelswitch");
+        const rp = document.getElementById("right-pannel");
+        if (rp.classList.contains("flex-2")) {
+           console.log("flex-1");
+          rp.classList.remove("flex-2");
+          rp.classList.add("flex-1");
+        } else if (rp.classList.contains("flex-1")) {
+           console.log("flex-2");
+          rp.classList.remove("flex-1");
+          rp.classList.add("flex-2");
         }
       }
     </script>
