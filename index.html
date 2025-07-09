@@ -69,6 +69,13 @@
         margin: 0;
         padding: 0;
       }
+      .side-menu-show {
+         display: block;
+      }
+      .side-menu-hidden {
+         display: none;
+      }
+
       #title-bar {
         z-index: 40;
         margin: 0;
@@ -106,13 +113,13 @@
     <div>
       <div class="navbar bg-base-100 shadow-sm gap-4">
         <div class="flex-none">
-          <button class="btn btn-square btn-ghost">
+          <button class="btn btn-square btn-ghost" onclick="menuswitch()">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-5 w-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
           </button>
           TOP
         </div>
         <div class="flex-1">
-          <a class="btn btn-ghost text-xl">daisyUI</a>
+          <a class="btn btn-ghost text-xl">mxGraph gsDrow</a>
         </div>
         <div class="flex-none">
           <div id="theme-img" class="dark-mode"></div>
@@ -129,7 +136,10 @@
         </div>
       </div>
       <div id="main-content" class="flex">
+	      <!--
         <div class="w-64 flex-1 overflow-y-scroll">
+	      -->
+        <div id="side-menu" class="w-64 flex-1 overflow-y-scroll side-menu-show">
           <!--MENU-->
           <div class="position-sticky">
             <!--
@@ -542,6 +552,19 @@
           img.classList.add("light-mode");
         }
       }
+
+      function  menuswitch() {
+          //console.log("menuswitch");
+          const side_menu = document.getElementById("side-menu");
+          if(side_menu.classList.contains('side-menu-show')){
+              side_menu.classList.remove("side-menu-show");
+              side_menu.classList.add("side-menu-hidden");
+           } else if(side_menu.classList.contains('side-menu-hidden')){
+              side_menu.classList.remove("side-menu-hidden");
+              side_menu.classList.add("side-menu-show");
+	   }
+      }
+
     </script>
 
     <script>
@@ -639,7 +662,7 @@
         terminal.value += msg;
         terminal.value += "\n";
       }
-      window.console.log = captureLog;
+      //window.console.log = captureLog;
     </script>
   </body>
 </html>
