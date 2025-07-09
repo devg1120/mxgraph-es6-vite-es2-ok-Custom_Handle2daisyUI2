@@ -24,6 +24,7 @@
     <style>
       :root {
         --my-color: #fff;
+        /* or any other variables/style */
       }
       [data-theme="dark"] {
         --my-color: #000;
@@ -37,6 +38,11 @@
         --menu-active-fg: white;
       }
 
+      .navbar2 {
+        z-index: 40;
+        margin: 0;
+        padding: 0;
+      }
       pre code {
         word-wrap: normal !important;
         overflow-wrap: normal !important;
@@ -45,12 +51,14 @@
       #terminal {
         font-family: "courier new", Futura, Helvetica, "游ゴシック", "メイリオ", Osaka;
         border: none;
+        /*color: white;*/
         font-size: 10pt;
       }
       .light-mode {
         width: 30px;
         height: 40px;
         border: 0;
+        /* color: #000000; */
         background: url(images/light-mode-svgrepo-com.svg) no-repeat;
         background-size: 100% 100%;
       }
@@ -63,29 +71,30 @@
         background-size: 100% 100%;
       }
 
-      #main-content {
+      .main-content {
+        /*max-height: calc(100vh - 97px);*/
+        /* max-height: 90vh;*/
         height: calc(100vh - 76px);
         z-index: 40;
         margin: 0;
         padding: 0;
       }
-      #title-bar {
-        z-index: 40;
-        margin: 0;
-        padding: 0;
-      }
       #center {
+
+        /* height: 82vh;*/
+
         height: calc(100vh - 140px);
+
       }
 
       #iframe-base {
-        /*  height: 350px;*/
-        height: 50%;
+       /*  height: 350px;*/
+         height: 50%;
       }
-      #code-body {
+      .code-body {
         /*height: calc(100vh - 535px );  */
         /*height: calc(90vh - 420px);*/
-        height: 50%;
+        height:50%;
         max-width: 70vw;
       }
 
@@ -99,6 +108,8 @@
         background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
         cursor: row-resize;
       }
+
+
     </style>
   </head>
 
@@ -118,7 +129,7 @@
           <div id="theme-img" class="dark-mode"></div>
         </div>
         <div class="flex-none">
-          <button id="theme-toggle" class="btn btn-xs btn-outline" data-toggle-theme="dark,light" data-act-class="ACTIVECLASS" onclick="theme(this)">dark</button>
+          <button id="theme-toggle" class="btn btn-xs btn-outline " data-toggle-theme="dark,light" data-act-class="ACTIVECLASS" onclick="theme(this)">dark</button>
         </div>
         <div class="flex-none">
           <button class="btn btn-square btn-ghost">
@@ -128,7 +139,7 @@
           </button>
         </div>
       </div>
-      <div id="main-content" class="flex">
+      <div class="flex main-content">
         <div class="w-64 flex-1 overflow-y-scroll">
           <!--MENU-->
           <div class="position-sticky">
@@ -388,16 +399,19 @@
         </div>
         <div class="flex-5">
           <!--MAIN-->
-          <div id="titile-bar" class="bg-base-200">
+          <div class="navbar2 bg-base-200">
+            <!--
+            <button class="btn btn-ghost text-xl" id="title">daisyUI</button>
+	    -->
             <button class="btn btn-ghost text-xl" id="title">daisyUI</button>
           </div>
 
-          <div class="bg-base-100">
+          <div class="iframe-base bg-base-100">
             <div id="desc"></div>
           </div>
           <div id="center" class="split">
             <div id="iframe-base" class="bg-base-100" d-split-auto="true"></div>
-            <div id="code-body" class="overflow-y-scroll">
+            <div id="code" class="code-body overflow-y-scroll">
               <pre><code  id="codeview" class="language-javascript"> ></code></pre>
             </div>
           </div>
@@ -443,6 +457,8 @@
         iframe = document.createElement("iframe");
 
         iframe.src = src;
+        //iframe.width = "80%";
+        //iframe.height = "350";
         iframe.width = "100%";
         iframe.height = "100%";
         parent.appendChild(iframe);
@@ -453,8 +469,28 @@
         const desc = document.getElementById("desc");
         const key = src.replace("/", "$").replace(".", "_");
         let desc_str = menu_dict[key];
-        desc.innerHTML = `<blockquote><font size="3" color="#3399ff">${desc_str}</font></blockquote>`;
+        desc.innerHTML = `<blockquote><font size="2" color="#3399ff">${desc_str}</font></blockquote>`;
 
+        const code = document.getElementById("codeview");
+        const text = `
+
+
+
+
+
+
+
+
+
+
+	`;
+
+        //code.innerText = text;
+        //hljs.highlightAll();
+
+        //code.innerHTML = hljs.highlight(text, { language: 'html' }).value;
+        code.innerHTML = hljs.highlight(text, { language: "javascript" }).value;
+        console.log(src);
 
         let buttons = document.querySelectorAll("button");
         for (const obj of buttons) {
@@ -469,7 +505,7 @@
         const mode = htmls[0].getAttribute("data-theme");
         const toggle = document.getElementById("theme-toggle");
         //toggle.innerText = mode;
-        console.log("chnge mode:" + mode);
+        console.log(mode);
         const img = document.getElementById("theme-img");
         if (mode == "dark") {
           toggle.innerText = "dark";
@@ -486,16 +522,6 @@
         }
 
         SplitPanel.init(document.getElementById("center"), "vertical");
-
-        console.log(src);
-        const code = document.getElementById("codeview");
-        let result = fetch(src);
-        result.then((response) => {
-          let text_promise = response.text();
-          text_promise.then((text) => {
-            code.innerHTML = hljs.highlight(text, { language: "javascript" }).value;
-          });
-        });
       };
 
       async function show(obj) {
@@ -513,11 +539,16 @@
         //const key = src.replace("/", "$").replace(".", "_");
         const key = src.replace(/\//g, "$").replace(/\./g, "_");
         let desc_str = menu_dict[key];
-        desc.innerHTML = `<blockquote><font size="3" color="#3399ff">${desc_str}</font></blockquote>`;
+        desc.innerHTML = `<blockquote><font size="2" color="#3399ff">${desc_str}</font></blockquote>`;
 
         const response = await fetch(src);
         const text = await response.text();
+
         const code = document.getElementById("codeview");
+        //code.innerText = text;
+        //hljs.highlightAll();
+
+        //code.innerHTML = hljs.highlight(text, { language: 'html' }).value;
         code.innerHTML = hljs.highlight(text, { language: "javascript" }).value;
         console.log(src);
       }
