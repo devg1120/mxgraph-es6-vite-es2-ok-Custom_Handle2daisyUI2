@@ -73,28 +73,25 @@
 
       .main-content {
         /*max-height: calc(100vh - 97px);*/
-        /* max-height: 90vh;*/
-        height: calc(100vh - 76px);
+        max-height: 90vh;
+        max-height: 91vh;
         z-index: 40;
         margin: 0;
         padding: 0;
       }
       #center {
 
-        /* height: 82vh;*/
-
-        height: calc(100vh - 140px);
 
       }
 
       #iframe-base {
        /*  height: 350px;*/
-         height: 50%;
+         height: 50vh;
       }
       .code-body {
         /*height: calc(100vh - 535px );  */
         /*height: calc(90vh - 420px);*/
-        height:50%;
+        height:32vh;
         max-width: 70vw;
       }
 
